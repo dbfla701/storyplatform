@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sqlmap.example.NonBookMapper">
+
+    <select id="testArtTable" resultType="HashMap">
+        SELECT *
+        FROM NON_BOOK_DETAIL
+    </select>
+
+    <insert id="insert">
+        insert into NON_BOOK_DETAIL
+        (ID, COUNTRY, ONE_TAG, THREE_TAG,
+         TITLE, SOURCE, ERA, USER_AGE)
+        values (NON_BOOK_DETAIL_SEQ.NEXTVAL, #{COUNTRY}, #{ONE_TAG}, #{THREE_TAG}, #{TITLE},
+                #{SOURCE}, #{ERA}, #{USER_AGE})
+    </insert>
+
+    <select id="topTakeList" resultType="HashMap">
+        SELECT *
+        FROM (
+                 SELECT ROWNUM AS RNUM,
+                        T1.*
+                 FROM NON_BOOK_DETAIL T1
+                 WHERE
+        <![CDATA[
+                     ROWNUM <= #{end}
+             )
+        WHERE #{start} <= RNUM
+        ]]>
+    </select>
+
+
+    <select id="count" resultType="Integer">
+        SELECT COUNT(ID)
+        FROM NON_BOOK_DETAIL
+    </select>
+
+
+    <delete id="delete">
+        DELETE
+        FROM NON_BOOK_DETAIL
+        WHERE ID = #{bookId}
+    </delete>
+</mapper>

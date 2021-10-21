@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sqlmap.example.BookMapper">
+
+
+    <select id="testArtTable" resultType="HashMap">
+        SELECT *
+        FROM BOOK_DETAIL
+    </select>
+
+
+    <insert id="insert">
+        insert into BOOK_DETAIL
+        (ID, COUNTRY, IS_PURCHASE, ONE_TAG, THREE_TAG, SMALL_TITLE,
+         BOOK_NAME, BOOK_AUTHOR, BOOK_PUBLISHER, YEAR_OF_PUBLICATION
+            , COST, ERA, AGE)
+        values (BOOK_DETAIL_SEQ.NEXTVAL, #{COUNTRY}, #{IS_PURCHASE}, #{ONE_TAG}, #{THREE_TAG}, #{SMALL_TITLE},
+                #{BOOK_NAME}, #{BOOK_AUTHOR}, #{BOOK_PUBLISHER}, #{YEAR_OF_PUBLICATION}
+                   , #{COST}, #{ERA}, #{AGE})
+    </insert>
+
+    <select id="topTakeList" resultType="HashMap">
+        SELECT *
+        FROM (
+                 SELECT ROWNUM AS RNUM,
+                        T1.*
+                 FROM BOOK_DETAIL T1
+                 WHERE
+        <![CDATA[
+                     ROWNUM <= #{end}
+             )
+        WHERE #{start} <= RNUM
+        ]]>
+    </select>
+
+    <select id="searchPageList" resultType="HashMap">
+        SELECT *
+        FROM (
+                 SELECT ROWNUM AS RNUM,
+                        T1.*
+                 FROM BOOK_DETAIL T1
+                 WHERE INSTR(${what}, #{keyword} ) > 0
+                   AND
+        <![CDATA[
+            ROWNUM <= #{end})
+        WHERE #{start} <= RNUM
+        ]]>
+    </select>
+
+    <select id="count" resultType="Integer">
+        SELECT COUNT(ID)
+        FROM BOOK_DETAIL
+    </select>
+
+    <select id="searchCount" resultType="Integer">
+        SELECT COUNT(ID)
+        FROM BOOK_DETAIL
+        WHERE INSTR(${what}, #{keyword} ) > 0
+    </select>
+
+    <delete id="delete">
+        DELETE
+        FROM BOOK_DETAIL
+        WHERE ID = #{bookId}
+    </delete>
+    <select id="searchKeyword" resultType="HashMap">
+        SELECT *
+        FROM BOOK_DETAIL
+        WHERE INSTR(${what}, #{keyword} ) > 0
+    </select>
+
+</mapper>

@@ -1,0 +1,507 @@
+@charset "utf-8";
+
+@media (max-width:1024px){
+    .slick-dotted.slick-slider
+    {
+        margin-bottom: 40px;
+    }
+
+    .cont_width{
+        width:95%
+    }
+    
+    .logo{
+        font-weight: 900;
+        font-size: 1rem;
+    }
+    
+    .logo b{
+        font-size:1.3rem;
+    }
+
+    .menu_wrap li{
+        font-size:0.9rem
+    }
+
+    .container {
+        width: 100%;
+        padding: 0 2.5%;
+    }
+
+    .each_link > div{
+        width:80%;
+    }
+
+    .main_tab_tit {
+        font-size: 1.2rem;
+    }
+
+    p.main_tab_txt {
+        font-size: 0.7rem;
+    }
+
+    .each_link .link_tit{
+        font-size:0.9rem
+    }
+    
+    .each_link .link_tit b{
+        font-size:1.3rem;
+    }
+
+    .footer_logo,
+    .each_banner {
+        transform: scale(0.7);
+    }
+    
+    .footer_logo:hover,
+    .each_banner:hover {
+        transform: scale(0.6);
+    }
+
+    .sub_bg_wrap{
+        height:250px;
+        line-height:250px;
+        font-weight:700;
+        font-size:1.3rem;
+    }
+
+    .location {
+        font-size: 0.9rem;
+    }
+
+    .all_select {
+        font-size: 0.9rem;
+        padding: 0.4rem 2rem 0.4rem 0.5rem;
+    }
+
+    .search_input {
+        padding: 0.4rem;
+    }
+
+    .search_input::placeholder{
+        font-size: 0.9rem;
+    }
+
+    .cont_tit {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+    }
+
+    .sub2_bg::after{
+        background-size: auto 240px;
+    }
+
+    .cont-left {
+        margin-left: 0rem;
+    }
+
+    .slide_arrow {
+        display: block;
+    }
+
+    .book_img .detail_txt {
+        text-align: center;
+    }
+}
+
+@media (max-width:768px){
+    /* mobile menu */
+    .header {
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 60px;
+        height: auto;
+    }
+
+    .logo {
+        line-height: 60px;
+    }
+
+    .menu_wrap {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .menu_wrap li{
+        margin-right: 0;
+        padding: 0.8rem 0;
+    }
+
+    .menu_btn,
+    .close_btn {
+        width: auto;
+        height: auto;
+        position: fixed;
+        top: 15px;
+        right: 2.5%;
+        z-index: 2;
+    }
+
+    .menu_btn img,
+    .close_btn img {
+        height: 30px;
+    }
+    
+    .g_bg {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        background: rgb(0 0 0 / 50%);
+        z-index: -2;
+        display: none;
+    }
+
+    .menu_btn.active,
+    .close_btn.active,
+    .g_bg.active {
+        display: block;
+    }
+
+    .menu_wrap.active {
+        display: flex;
+    }
+
+    .square_content{
+        width:45%;
+        padding-top:45%;
+    }
+
+    .notice_wrap{
+        margin:0 0.3%;
+    }
+
+    .link_tab {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .link_tab_tit,
+    .link_tab_cont {
+        width: 100%;
+    }
+
+    .link_tab_tit {
+        margin: 0 0 3rem;
+        text-align: center;
+    }
+
+    .footer_txt {
+        font-size: 0.8rem;
+    }
+
+    .br-768 {
+        display: block;
+    }
+
+    .d-n-768 {
+        display: none;
+    }
+
+    .border_tab_btn p {
+        font-size: 1rem;
+    }
+
+    .sub_box {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .book_list li {
+        width: 33.33333%;
+    }
+
+    .list_txt {
+        font-size: 0.9rem;
+    }
+    
+    .small_txt {
+        font-size: 0.7rem;
+    }
+
+    .square_content{
+        width:45%;
+        padding-top:45%;
+        margin:0 2.5% 3% 2.5%;
+    }
+
+    .link_btn a,
+    .std_btn a {
+        padding: 0.4rem 0.5rem;
+    }
+
+    .common_dots .slick-dots li,
+    .common_dots .slick-dots li.slick-active {
+        width: 30px;
+        height: 5px;
+    }
+
+    .each_info {
+        flex-direction: column;
+    }
+
+    .each_info > p {
+        margin: 0 0 1rem;
+    }
+
+    .sub3 {
+        display: none;
+    }
+
+    .sub_box ul li.warning_text {
+        font-size: 0.8rem;
+    }
+
+    .main_tab_line {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .sub2_bg::after{
+        background-size: auto 200px;
+    }
+}
+
+@media (max-width:576px){
+    .all_form_wrap{
+        width:95%;
+        margin:0 auto; 
+    }
+
+    .col-md-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .col-md-10 {
+        flex: 0 0 83.33333%;
+        max-width: 83.33333%;
+    }
+
+    .col-md-12 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .director_info > div {
+        margin: 0 auto;
+    }
+
+    .director_info > div + div {
+        padding: 2rem 0 0;
+    }
+    
+    .tit_icon {
+        height: 20px;
+        line-height: 20px;
+    }
+
+    .small_tit {
+        font-size:1.3rem;
+        margin: 1.5rem 0;
+    }
+
+    .cont_txt {
+        font-size: 0.9rem;
+    }
+
+    .register_box {
+        flex-direction: column;
+    }
+
+    .register_box > div,
+    .register_box input {
+        width: 100%;
+    }
+
+    .link_tab_cont {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .each_link {
+        width: 80%;
+        margin-bottom: 2rem;
+    }
+
+    .each_link .link_tit{
+        text-align: center;
+        font-size:1.1rem
+    }
+    
+    .each_link .link_tit b{
+        font-size:1.5rem;
+    }
+
+    .slick-dotted.slick-slider
+    {
+        margin-bottom: 30px;
+    }
+
+    .banner_wrap {
+        margin-top: 30px;
+    }
+
+    .footer {
+        flex-direction: column;
+    }
+
+    .footer_logo {
+        margin-right: 0;
+    }
+
+    .footer_logo,
+    .each_banner {
+        transform: scale(0.6);
+    }
+    
+    .footer_logo:hover,
+    .each_banner:hover {
+        transform: scale(0.5);
+    }
+    
+    .recommend {
+        width: 80%;
+    }
+
+    .book_list li {
+        width: 50%;
+    }
+    
+    .square_content{
+        width:80%;
+        padding-top:80%;
+        margin:0 10% 3% 10%;
+    }
+
+    .cont_tit {
+        font-size: 1.3rem;
+    }
+
+    .inner .tit {
+        font-size: 1rem;
+    }
+
+    .d-n-576 {
+        display: none !important;
+    }
+
+    .d-b-576 {
+        display: inline-block !important;
+    }
+
+    .search_icon.d-b-576 {
+        position: relative;
+        top: -0.3rem;
+        display: inline-block;
+    }
+
+    .table,
+    .paging_prev,
+    .paging_now,
+    .paging_num,
+    .paging_next {
+        font-size: 0.9rem;
+    }
+
+    .paging_first a,
+    .paging_last a {
+        font-size: 1.6rem;
+    }
+
+    .m-up-down-reduce {
+        margin: 1rem 0;
+    }
+
+    .notice_wrap {
+        font-size: 0.9rem;
+    }
+
+    .table col:nth-child(2) {
+        width: 30% !important;
+    }
+
+    .table col:nth-child(3) {
+        width: 30% !important;
+    }
+
+    .table .col_body tr td:nth-child(2) {
+        text-indent: 1rem;
+    }
+
+    .each_inner_wrap {
+        width: calc(100% - 2rem);
+        margin: 0 1rem;
+        padding-top: 2.5rem;
+    }
+
+    .each_info > p {
+        font-size: 1rem;
+    }
+    
+    .detail_info {
+        margin-right: 0;
+        font-size: 0.7rem;
+    }
+
+    .p_bg {
+        height: 300px;
+    }
+
+    .each_cont {
+        min-height: 250px;
+        padding: 1rem;
+        line-height: 1.5;
+        border-width: 1px;
+        border-radius: 10px;
+        font-size: 0.9rem;
+    }
+
+    .each_btn {
+        font-size: 0.9rem;
+    }
+
+    .each_btn li {
+        border-width: 1px;
+    }
+
+    .each_btn li p span {
+        flex-basis: 20%;
+    }
+
+    .each_btn li p a {
+        flex-basis: 80%;
+    }
+
+    .main_notice {
+        margin-bottom: 3rem !important;
+    }
+
+    .all_select.w-85 {
+        width: 85px;
+    }
+
+    .search_input {
+        width: 50px;
+    }
+
+    .search_icon{
+        width:20px;
+        height:15px;
+        margin-right: 5px;
+    }
+
+    .each_cont_txt {
+        padding: 1rem 0 0;
+    }
+
+    .sub2_bg::after{
+        background-size: auto 160px;
+    }
+}

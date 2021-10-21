@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sqlmap.example.BoardMapper">
+
+	<!-- 관리자 회원가입 -->
+	<insert id="joinUser" parameterType="BoardDto">
+		INSERT INTO JOIN
+		(NAME,ADMINID,PW,EMAIL) VALUES
+		(#{name},#{adminid},#{pw},#{email})
+	</insert>
+
+	<!-- 로그인 -->
+	<select id="login" parameterType="BoardDto" resultType="int">
+		SELECT
+		COUNT(*) FROM JOIN WHERE ADMINID=#{adminid}
+	</select>
+
+	<!-- 관리자 계정 select -->
+	<select id="adminSelect" parameterType="BoardDto"
+		resultType="BoardDto">
+		SELECT NAME,ADMINID,PW,EMAIL FROM JOIN WHERE
+		ADMINID=#{adminid}
+	</select>
+
+	<!-- 스토리 게시판 목록 (유저 페이지) -->
+	<select id="StoryBoardList" resultType="StoryDto"
+		parameterType="hashMap">
+		SELECT
+		SEQ, KEYWORD, TITLE
+		FROM (
+		SELECT ROW_NUMBER() OVER
+		(ORDER BY
+		SEQ) NUM
+		, H.*
+		FROM STORYBOARD H
+		ORDER BY SEQ
+		)
+		WHERE NUM
+		BETWEEN
+		${displayPost} AND ${postNum}
+	</select>
+
+
+	<!-- 스토리 게시판 목록 (관리자 페이지) -->
+	<select id="StoryBoardList_A" resultType="StoryDto"
+		parameterType="hashMap">
+		SELECT
+		SEQ, KEYWORD, TITLE, PERMIT
+		FROM (
+		SELECT
+		ROW_NUMBER() OVER
+		(ORDER BY
+		SEQ) NUM
+		, H.*
+		FROM STORYBOARD H
+		ORDER BY SEQ
+		)
+		WHERE NUM
+		BETWEEN
+		${displayPost} AND ${postNum}
+	</select>
+
+	<!-- 스토리게시판 상세보기 -->
+	<!-- 이메일 공개일때 -->
+	<select id="StoryBoardDetail" resultType="StoryDto"
+		parameterType="String">
+		SELECT SEQ, KEYWORD, USER_EMAIL, TITLE, CONTENT FROM
+		STORYBOARD WHERE TITLE=#{title}
+	</select>
+
+	<!-- 스토리게시판 상세보기 -->
+	<!-- 이메일 비공개일때 -->
+	<select id="StoryBoardDetail_N" resultType="StoryDto"
+		parameterType="String">
+		SELECT SEQ, KEYWORD, TITLE, CONTENT FROM
+		STORYBOARD WHERE
+		TITLE=#{title}
+	</select>
+
+	<!-- 스토리게시판 글쓰기 -->
+	<insert id="StoryWrite" parameterType="StoryDto">
+		INSERT INTO STORYBOARD
+		(SEQ, KEYWORD ,USER_EMAIL ,TITLE ,CONTENT,PERMIT,EMAILCHECK)
+		VALUES
+		(QSEQ.NEXTVAL ,#{keyword},#{user_email},#{title},
+		#{content},'보류',#{emailcheck})
+	</insert>
+
+	<!-- 스토리게시판 글 갯수 -->
+	<select id="StoryBoardCount" resultType="int">
+		SELECT COUNT(*) FROM
+		STORYBOARD
+	</select>
+
+	<!-- 공지사항 목록 -->
+	<select id="NoticeList" resultType="NoticeDto"
+		parameterType="hashMap">
+		SELECT
+		SEQ, SORT, TITLE, REGDATE
+		FROM (
+		SELECT ROW_NUMBER()
+		OVER (ORDER BY
+		REGDATE DESC) NUM
+		, H.*
+		FROM NOTICE H
+		ORDER BY REGDATE DESC
+		)
+		WHERE NUM
+		BETWEEN ${displayPost} AND ${postNum}
+	</select>
+
+	<!-- 공지사항 글 갯수 -->
+	<select id="noticeCount" resultType="int">
+		SELECT COUNT(*) FROM NOTICE
+	</select>
+
+	<!-- 공지사항 상세보기 -->
+	<select id="noticeDetail" resultType="NoticeDto"
+		parameterType="String">
+		SELECT * FROM NOTICE WHERE SEQ=#{seq}
+	</select>
+
+	<!-- 스토리 글 승인 -->
+	<update id="permitUpdate" parameterType="int">
+		UPDATE STORYBOARD SET
+		PERMIT='승인' WHERE SEQ=#{seq}
+	</update>
+
+	<!-- 스토리 글 반려 -->
+	<update id="denyUpdate" parameterType="int">
+		UPDATE STORYBOARD SET
+		PERMIT='반려' WHERE SEQ=#{seq}
+	</update>
+
+	<!-- 스토리 승인 글 select -->
+	<select id="permitSelect" resultType="StoryDto">
+		SELECT SEQ, KEYWORD, TITLE, PERMIT FROM STORYBOARD WHERE PERMIT='승인'
+	</select>
+
+	<!-- 스토리 반려 글 select -->
+	<select id="denySelect" resultType="StoryDto">
+		SELECT SEQ, KEYWORD, TITLE, PERMIT FROM STORYBOARD WHERE PERMIT='반려'
+	</select>
+
+	<!-- 공지사항 글등록 -->
+	<insert id="noticeWrite" parameterType="NoticeDto">
+		INSERT INTO NOTICE (SEQ, SORT, TITLE, CONTENT, REGDATE)
+		VALUES (NOTICE_SEQ.NEXTVAL,#{sort},#{title},#{content},SYSDATE)
+	</insert>
+	
+	<!-- 공지사항 글 삭제 -->
+	<delete id="noticeDelete" parameterType="String">
+	DELETE FROM NOTICE WHERE SEQ=#{seq}
+	</delete>
+
+</mapper>
